@@ -1,26 +1,39 @@
-package com.teknologiinformasi.restapi.order.event;
+package com.teknologiinformasi.restapi.order.model;
 
-import java.io.Serializable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-public class OrderCreatedEvent implements Serializable {
+
+
+@Entity
+@Table(name = "order_summary")
+public class OrderSummary {
+  
+   @Id
    private String orderId;
    private Long productId;
    private int quantity;
    private LocalDateTime orderDate;
-   private String orderStatus; // misal: CREATED
-   public OrderCreatedEvent() {}
-   public OrderCreatedEvent(String orderId,Long  productId, int quantity, LocalDateTime orderDate, String orderStatus) {
+   private String orderStatus;
+  
+   public OrderSummary() {}
+
+
+   public OrderSummary(String orderId, Long productId, int quantity, LocalDateTime orderDate, String orderStatus) {
        this.orderId = orderId;
        this.productId = productId;
        this.quantity = quantity;
        this.orderDate = orderDate;
        this.orderStatus = orderStatus;
    }
+
+
    // Getters & Setters
-   public String getid() {
+   public String getOrderId() {
        return orderId;
    }
-   public void setid(String orderId) {
+   public void setOrderId(String orderId) {
        this.orderId = orderId;
    }
    public Long getProductId() {
@@ -35,10 +48,10 @@ public class OrderCreatedEvent implements Serializable {
    public void setQuantity(int quantity) {
        this.quantity = quantity;
    }
-   public LocalDateTime getorderDate() {
+   public LocalDateTime getOrderDate() {
        return orderDate;
    }
-   public void setorderDate(LocalDateTime orderDate) {
+   public void setOrderDate(LocalDateTime orderDate) {
        this.orderDate = orderDate;
    }
    public String getOrderStatus() {
@@ -47,14 +60,7 @@ public class OrderCreatedEvent implements Serializable {
    public void setOrderStatus(String orderStatus) {
        this.orderStatus = orderStatus;
    }
-   @Override
-   public String toString() {
-       return "OrderCreatedEvent{" +
-               "orderId=" + orderId +
-               ", productId=" + productId +
-               ", quantity=" + quantity +
-               ", orderDate=" + orderDate +
-               ", orderStatus='" + orderStatus + '\'' +
-               '}';
-   }
 }
+
+
+
